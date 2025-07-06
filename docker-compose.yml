@@ -1,0 +1,18 @@
+services:
+  # Nome do serviço da sua API.
+  app:
+    # 'build: .' instrui o Docker Compose a construir a imagem a partir do
+    # Dockerfile localizado no diretório atual (.).
+    build: .
+    # Mapeia a porta 8000 do seu computador (host) para a porta 8000 do contêiner.
+    container_name: api
+    # Isso permite que você acesse a API em http://localhost:8000.
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual (onde está seu código) para o diretório /app
+    # dentro do contêiner. Isso é ótimo para desenvolvimento, pois qualquer
+    # alteração no seu código local será refletida instantaneamente no contêiner,
+    # e o uvicorn com --reload irá reiniciar o servidor automaticamente.
+    # O banco de dados 'escola.db' também será persistido no seu diretório local.
+    volumes:
+      - .:/app
